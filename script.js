@@ -43,7 +43,7 @@ function playRound(playerSelection, computerSelection) {
     }   
     
 }
-// execute the 
+// Play the game
 function playGame() {
     const userInput = prompt("Please type your choice: Rock, Paper, Scissors.").toLowerCase();   
 
