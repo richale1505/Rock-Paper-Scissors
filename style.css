@@ -60,10 +60,17 @@ img {
     gap: 2px;
 }
 
+button:hover {
+    background: yellow;
+    border: solid 2px blue;
+    color: var(--btn-color);
+}
+
 #btnArea button {
-    width: 100%;
+    width: 33%;
     background: var(--btn-color);
     color: var(--text-color);
     font-weight: bold;
-    font-size: 1.8em;
+    font-size: 1.4em;
 }
+
