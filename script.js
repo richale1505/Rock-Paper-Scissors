@@ -16,38 +16,90 @@ function getComputerChoice() {
             computerChoice = computerOptions[2];
             break;
     }
-    console.log(computerChoice);
+    console.log('CPU ' + computerChoice);
+    cpuChoice.textContent = computerChoice.toUpperCase();
     return computerChoice;
 }
 
 // Function that plays a single round of Rock Paper Scissors and determines a winner.
 
 function playRound(playerSelection, computerSelection) {
-    const computerOptions = ['rock', 'paper', 'scissors'];
+    let result = '';
 
-    if (playerSelection == "") {
-        alert('You didn\'t write anything');
-        playGame();
+    if (playerSelection === 'rock' && computerSelection === 'scissors' 
+    || playerSelection === 'scissors' && computerSelection === 'paper' 
+    || playerSelection === 'paper' && computerSelection == 'rock') {
+        result = 'You Win';
+    } else if (playerSelection === computerSelection) {
+        result = 'You Tie';
     } else {
-        if (!computerOptions.includes(playerSelection)) {
-            alert('invalid input. \n You can only play Rock, Paper or Scissors.');
-            playGame();
-        } else {
-            playerSelection == "rock" && computerSelection == "scissors" || 
-            playerSelection == "scissors" && computerSelection == "paper" || 
-            playerSelection == "paper" && computerSelection == "rock" ? alert('You win! You chose ' + playerSelection + " and the CPU chose " + computerSelection)
-            : playerSelection ===  computerSelection ? alert('It\'s a tie. You chose ' + playerSelection + " and the CPU chose " + computerSelection)
-            : alert('You lose. You chose' + playerSelection + " and the CPU chose " + computerSelection);
-            playGame();
-        }   
-    }   
-    
-}
+        result = 'You Lose';
+    }
+
+    showResult.textContent = result;
+}   
+
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const usrChoice = document.querySelector('#playerChoice');
+const cpuChoice = document.querySelector('#cpuChoice');
+const showResult = document.querySelector('h1');
+let userInput = '';
+
+rock.addEventListener('click', () => {
+    userInput = 'rock';
+    console.log('user' + userInput);
+    playGame();
+});
+
+rock.addEventListener('focus', (e) => {
+    e.target.style.background = '#EABE6C';
+    e.target.style.color = '#891652';
+});
+
+rock.addEventListener('blur', (e) => {
+    e.target.style.background = '#891652';
+    e.target.style.color = '#EABE6C';
+});
+
+paper.addEventListener('click', () => {
+    userInput = 'paper';
+    console.log('user' + userInput);
+    playGame();
+});
+
+paper.addEventListener('focus', (e) => {
+    e.target.style.background = '#EABE6C';
+    e.target.style.color = '#891652';
+});
+
+paper.addEventListener('blur', (e) => {
+    e.target.style.background = '#891652';
+    e.target.style.color = '#EABE6C';
+});
+
+scissors.addEventListener('click', () => {
+    userInput = 'scissors';
+    console.log('user' + userInput);
+    playGame();
+});
+
+scissors.addEventListener('focus', (e) => {
+    e.target.style.background = '#EABE6C';
+    e.target.style.color = '#891652';
+});
+
+scissors.addEventListener('blur', (e) => {
+    e.target.style.background = '#891652';
+    e.target.style.color = '#EABE6C';
+});
+
+
+
 // Play the game
 function playGame() {
-    const userInput = prompt("Please type your choice: Rock, Paper, Scissors.").toLowerCase();   
-
     playRound(userInput, getComputerChoice())
+    usrChoice.textContent = userInput.toUpperCase();
+    console.log('game played');
 }
-
-console.log(playGame());
