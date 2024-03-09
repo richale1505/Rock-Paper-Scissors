@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, paper, scissors</title>
-    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js" defer></script>
 </head>
 <body>
-    
+    <div id="container">
+        <div id="gameArea">
+            <h1>Rock, Paper, Scissors.</h1>
+            <div id="imgArea">
+                <img src="" alt="player choice">
+                <img src="" alt="CPU choice">
+            </div>
+            
+            <div id="textArea">
+                <h3>You're choice</h3>
+                <h3>CPU's choice</h3>
+            </div>
+
+            <div id="choices">
+                <h2 class="choiceText" id="playerChoice"></h2>
+                <h2 class="choiceText" id="cpuChoice"></h2>
+            </div>
+
+            <div id="btnArea">
+                <button id="rock">ROCK</button>
+                <button id="paper">PAPER</button>
+                <button id="scissors">SCISSORS</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
