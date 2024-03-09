@@ -18,25 +18,33 @@ function getComputerChoice() {
     }
     console.log('CPU ' + computerChoice);
     cpuChoice.textContent = computerChoice.toUpperCase();
+
+    if (computerChoice == 'rock') {
+        image2.src = 'media/rock.png';
+    } else if (computerChoice == 'paper') {
+        image2.src = 'media/paper.png';
+    } else if (computerChoice == 'scissors') {
+        image2.src = 'media/scissors.png';
+    }
+
+    
     return computerChoice;
 }
 
 // Function that plays a single round of Rock Paper Scissors and determines a winner.
-
 function playRound(playerSelection, computerSelection) {
-    let result = '';
-
     if (playerSelection === 'rock' && computerSelection === 'scissors' 
     || playerSelection === 'scissors' && computerSelection === 'paper' 
     || playerSelection === 'paper' && computerSelection == 'rock') {
-        result = 'You Win';
+        console.log("it's a win");
+        userscore += 1; 
     } else if (playerSelection === computerSelection) {
-        result = 'You Tie';
+        console.log("it's a tie");
     } else {
-        result = 'You Lose';
+        console.log('You Lose');;
+        cpuScore += 1;
     }
-
-    showResult.textContent = result;
+    console.log(userscore + '\n' + cpuScore)
 }   
 
 const rock = document.querySelector('#rock');
@@ -45,11 +53,19 @@ const scissors = document.querySelector('#scissors');
 const usrChoice = document.querySelector('#playerChoice');
 const cpuChoice = document.querySelector('#cpuChoice');
 const showResult = document.querySelector('h1');
+const userscoreText = document.querySelector('#userPoints');
+const cpuScoreText = document.querySelector('#cpuPoints');
+const image1 = document.querySelector('#image1');
+const image2 = document.querySelector('#image2');
+
+let userscore = 0;
+let cpuScore = 0;
 let userInput = '';
 
 rock.addEventListener('click', () => {
     userInput = 'rock';
     console.log('user' + userInput);
+    image1.src = 'media/rock.png';
     playGame();
 });
 
@@ -66,6 +82,7 @@ rock.addEventListener('blur', (e) => {
 paper.addEventListener('click', () => {
     userInput = 'paper';
     console.log('user' + userInput);
+    image1.src = 'media/paper.png';
     playGame();
 });
 
@@ -82,6 +99,7 @@ paper.addEventListener('blur', (e) => {
 scissors.addEventListener('click', () => {
     userInput = 'scissors';
     console.log('user' + userInput);
+    image1.src = 'media/scissors.png';
     playGame();
 });
 
@@ -95,11 +113,24 @@ scissors.addEventListener('blur', (e) => {
     e.target.style.color = '#EABE6C';
 });
 
-
-
 // Play the game
 function playGame() {
     playRound(userInput, getComputerChoice())
     usrChoice.textContent = userInput.toUpperCase();
+    if (userscore == 5) {
+        alert('You Win!');
+        if (confirm('Play again?') == true) {
+            location.reload();
+        };
+    } else if (cpuScore == 5) {
+        alert('You Lose!')
+        if (confirm('Play again?') == true) {
+            location.reload();
+        };
+    }
+
+    userscoreText.textContent = userscore;
+    cpuScoreText.textContent = cpuScore;
     console.log('game played');
 }
+
